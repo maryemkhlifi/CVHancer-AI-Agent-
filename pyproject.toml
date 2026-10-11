@@ -1,0 +1,38 @@
+[project]
+name = "ai-project"
+version = "0.1.0"
+description = "A starter AI project built on Claude (Anthropic API)."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=1.0",
+    "pandas>=2.3.3",
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+ai-chat = "ai_project.chat:main"
+ai-agent = "ai_project.agent:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_project"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
